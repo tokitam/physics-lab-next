@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
 
-
+<h1><a href="https://physics-lab.lolipop-now.app/">DEMO phics-lab</a> <a href="https://physics-lab.lolipop-now.app/">実際に動くデモここをクリック</a> </h1>
 
 https://github.com/user-attachments/assets/2114e7d4-ac9a-42e7-a124-336a0d581b1d
 
