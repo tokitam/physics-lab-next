@@ -14,6 +14,7 @@ body {
   touch-action: none;
 }
 
+/* ── デスクトップパネル ── */
 #panel {
   position: fixed;
   top: 16px;
@@ -27,7 +28,10 @@ body {
   user-select: none;
 }
 
-#panel h2 {
+#drawerHandle { display: none; }
+.mobile-hint  { display: none; }
+
+#panel h2.desktop-title {
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -134,4 +138,81 @@ button.danger:hover {
 #bodyCount {
   margin-top: 2px;
   color: #8888aa;
+}
+
+/* ── モバイル: ボトムドロワー ── */
+/* タッチデバイス または 640px 以下 */
+@media (pointer: coarse), (max-width: 640px) {
+  .desktop-title { display: none; }
+  .desktop-hint  { display: none; }
+  .mobile-hint   { display: block; }
+
+  /* ドロワーハンドル */
+  #drawerHandle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 0 10px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .handle-bar {
+    display: block;
+    width: 36px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .handle-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #a0c8ff;
+    letter-spacing: 0.04em;
+  }
+
+  /* パネル本体をドロワーに */
+  #panel {
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    border-radius: 16px 16px 0 0;
+    padding: 0 16px 32px;
+    /* collapsed: ハンドル(~44px) + スポーンセクション(~125px) = ~169px を露出 */
+    transform: translateY(calc(100% - 169px));
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    max-height: 85vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #panel.open {
+    transform: translateY(0);
+  }
+
+  /* 物理パラメータとヒントは collapsed 時にポインター無効 */
+  #panel:not(.open) #physicsParams,
+  #panel:not(.open) .hint {
+    pointer-events: none;
+  }
+
+  /* タッチ向けにボタン・スライダーを大きく */
+  button {
+    padding: 12px 4px;
+    font-size: 13px;
+    min-height: 44px;
+  }
+
+  input[type="range"] {
+    height: 28px;
+  }
+
+  label.checkbox input {
+    width: 18px;
+    height: 18px;
+  }
 }

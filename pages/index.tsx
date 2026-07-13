@@ -1,9 +1,12 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
+import { useState } from 'react';
 
 const PhysicsScene = dynamic(() => import('../components/PhysicsScene'), { ssr: false });
 
 export default function Home() {
+  const [open, setOpen] = useState(false);
+
   return (
     <>
       <Head>
@@ -13,10 +16,31 @@ export default function Home() {
 
       <canvas id="renderCanvas"></canvas>
 
-      <div id="panel">
-        <h2>物理エンジン実験場</h2>
+      <div id="panel" className={open ? 'open' : ''}>
+        {/* モバイル: ドロワーハンドル（タップで展開/収納） */}
+        <div id="drawerHandle" onClick={() => setOpen(o => !o)}>
+          <span className="handle-bar"></span>
+          <span className="handle-label">物理エンジン実験場 {open ? '▼' : '▲'}</span>
+        </div>
 
-        <section>
+        {/* デスクトップタイトル */}
+        <h2 className="desktop-title">物理エンジン実験場</h2>
+
+        {/* スポーン（モバイル collapsed 時も見える） */}
+        <section id="spawnSection">
+          <h3>スポーン</h3>
+          <div className="btn-row">
+            <button id="btnBall">ボール追加</button>
+            <button id="btnBox">箱を追加</button>
+          </div>
+          <div className="btn-row">
+            <button id="btnTower">タワー建設</button>
+            <button id="btnClear" className="danger">全削除</button>
+          </div>
+        </section>
+
+        {/* 物理パラメータ（モバイル collapsed 時は隠れる） */}
+        <section id="physicsParams">
           <h3>物理パラメータ</h3>
           <label>
             摩擦係数 <span id="frictionVal">0.50</span>
@@ -32,20 +56,9 @@ export default function Home() {
           </label>
         </section>
 
-        <section>
-          <h3>スポーン</h3>
-          <div className="btn-row">
-            <button id="btnBall">ボール追加</button>
-            <button id="btnBox">箱を追加</button>
-          </div>
-          <div className="btn-row">
-            <button id="btnTower">タワー建設</button>
-            <button id="btnClear" className="danger">全削除</button>
-          </div>
-        </section>
-
         <section className="hint">
-          <p>ドラッグ: 視点回転　ホイール: ズーム</p>
+          <p className="desktop-hint">ドラッグ: 視点回転　ホイール: ズーム</p>
+          <p className="mobile-hint">1本指: 視点回転　ピンチ: ズーム</p>
           <p id="bodyCount">オブジェクト数: 0</p>
         </section>
       </div>
