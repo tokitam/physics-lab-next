@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
 
+
+
+https://github.com/user-attachments/assets/2114e7d4-ac9a-42e7-a124-336a0d581b1d
+
+
+
 ## Getting Started
 
 First, run the development server:
@@ -23,6 +29,9 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
 
 This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+<img width="1106" height="624" alt="スクリーンショット 2026-07-14 0 04 25" src="https://github.com/user-attachments/assets/426a5f4b-b9d0-4251-9c9d-b3a39d5126ab" />
+
 
 ## Learn More
 
